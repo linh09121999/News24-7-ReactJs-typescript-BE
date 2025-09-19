@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 // API endpoint backend
 app.get("/api/headlines", async (req, res) => {
     try {
-        const { country = "us", category = "", keyHeadling = "", pageSize = "", page = "" } = req.query;
+        const { country = "us", category = "", keyHeadling = "", pageSize = "12", page = "1" } = req.query;
         const keyApi = "43e1cbf53535470e9755d9d450375588"; // 🔑 thay bằng key thật của bạn
 
         const response = await axios.get("https://newsapi.org/v2/top-headlines", {
@@ -41,7 +41,7 @@ app.get("/api/headlines", async (req, res) => {
 
 app.get("/api/everything", async (req, res) => {
     try {
-        const { keywork = "news", searchIn = "title,description,content", from = "", to = "", language = "en", sortBy = "publishedAt", pageSize = "", page = "" } = req.query;
+        const { keywork = "news", searchIn = "title,description,content", from = "", to = "", language = "en", sortBy = "publishedAt", pageSize = "12", page = "1" } = req.query;
         const keyApi = "43e1cbf53535470e9755d9d450375588"; // 🔑 thay bằng key thật của bạn
 
         const response = await axios.get("https://newsapi.org/v2/everything", {
