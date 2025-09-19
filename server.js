@@ -44,7 +44,6 @@ app.get("/api/everything", async (req, res) => {
         const response = await axios.get("https://newsapi.org/v2/everything", {
             params: {
                 q: keywork,
-                searchIn,
                 from: from,
                 to: to,
                 sortBy,
