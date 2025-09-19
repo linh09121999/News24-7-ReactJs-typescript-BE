@@ -14,13 +14,16 @@ app.get("/", (req, res) => {
 // API endpoint backend
 app.get("/api/headlines", async (req, res) => {
     try {
-        const { country = "us", category = "" } = req.query;
-        const keyApi = "43e1cbf53535470e9755d9d450375588"; // 🔑 thay bằng key thật của bạn
+        const { country = "us", category = "", keyHeadling = "", pageSize = "12", page = "1" } = req.query;
+        const keyApi = "c974ef460e2e46378e496ade0c22d3ae"; // 🔑 thay bằng key thật của bạn
 
         const response = await axios.get("https://newsapi.org/v2/top-headlines", {
             params: {
                 country,
                 category: category,
+                q: keyHeadling,
+                pageSize: pageSize,
+                page: page,
                 apiKey: keyApi
             },
             headers: {
@@ -38,15 +41,19 @@ app.get("/api/headlines", async (req, res) => {
 
 app.get("/api/everything", async (req, res) => {
     try {
-        const { keywork = "news",  from = "", to = "", sortBy = "publishedAt" } = req.query;
-        const keyApi = "43e1cbf53535470e9755d9d450375588"; // 🔑 thay bằng key thật của bạn
+        const { keywork = "news", searchIn = "title,description,content", from = "", to = "", language = "en", sortBy = "publishedAt", pageSize = "12", page = "1" } = req.query;
+        const keyApi = "c974ef460e2e46378e496ade0c22d3ae"; // 🔑 thay bằng key thật của bạn
 
         const response = await axios.get("https://newsapi.org/v2/everything", {
             params: {
                 q: keywork,
+                searchIn,
                 from: from,
                 to: to,
+                language,
                 sortBy,
+                pageSize: pageSize,
+                page: page,
                 apiKey: keyApi
             },
             headers: {
