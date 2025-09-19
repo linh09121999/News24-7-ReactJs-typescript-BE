@@ -41,12 +41,6 @@ app.get("/api/everything", async (req, res) => {
         const { keywork = "news", from = "", to = "", sortBy = "publishedAt" } = req.query;
         const keyApi = "43e1cbf53535470e9755d9d450375588"; // 🔑 thay bằng key thật của bạn
 
-        keywork = (keywork || "").trim();          // 👈 loại bỏ khoảng trắng thừa
-
-        if (!keywork) {                            // 👈 kiểm tra rỗng
-            return res.json({ status: "ok", totalResults: 0, articles: [] });
-        }
-
         const response = await axios.get("https://newsapi.org/v2/everything", {
             params: {
                 q: keywork,
